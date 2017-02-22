@@ -27,9 +27,23 @@
 
 -(void)configure
 {
-    self.titleLabel.text = self.todo.title;
-    self.descriptionLabel.text = self.todo.todoDescription;
-    self.priorityLabel.text = [NSString stringWithFormat:@"%i", self.todo.priorityNumber];
+    if (self.todo.isCompleted == NO) {
+        self.titleLabel.text = self.todo.title;
+        self.descriptionLabel.text = self.todo.todoDescription;
+        self.priorityLabel.text = [NSString stringWithFormat:@"%i", self.todo.priorityNumber];
+    } else {
+        NSMutableAttributedString *titleStrikethrough = [[NSMutableAttributedString alloc] initWithString:self.todo.title];
+        [titleStrikethrough addAttribute:NSStrikethroughStyleAttributeName
+                                   value:@4
+                                   range:NSMakeRange(0, [titleStrikethrough length])];
+        NSMutableAttributedString *descriptionStrikethrough = [[NSMutableAttributedString alloc] initWithString:self.todo.todoDescription];
+        [descriptionStrikethrough addAttribute:NSStrikethroughStyleAttributeName
+                                   value:@4
+                                   range:NSMakeRange(0, [descriptionStrikethrough length])];
+        self.titleLabel.attributedText = titleStrikethrough;
+        self.descriptionLabel.attributedText = descriptionStrikethrough;
+    }
+    
 }
 
 - (void)awakeFromNib {

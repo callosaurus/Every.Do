@@ -36,7 +36,9 @@
     
     self.objects = [[NSMutableArray alloc] initWithObjects:firstTodo, secondTodo, thirdTodo, fourthTodo, nil];
     
-   
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeAndComplete:)];
+    [self.tableView addGestureRecognizer:swipe];
+    
 }
 
 
@@ -59,6 +61,20 @@
     [self.objects insertObject:newTodo atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+}
+
+-(void)swipeAndComplete:(UISwipeGestureRecognizer *)swipe
+{
+    CGPoint swipeLocation = [swipe locationInView:self.tableView];
+    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:swipeLocation];
+    Todo *todo = self.objects[swipedIndexPath.row];
+    
+    if (todo.isCompleted == NO) {
+        todo.isCompleted = YES;
+    }
+    
+    [self.tableView reloadData];
+    
 }
 
 #pragma mark - Segues
@@ -95,7 +111,7 @@
     TodoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TodoCell" forIndexPath:indexPath];
 
     cell.todo = self.objects[indexPath.row];
-    
+
     return cell;
 }
 
@@ -104,7 +120,6 @@
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
