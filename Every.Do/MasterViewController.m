@@ -8,10 +8,11 @@
 
 #import "MasterViewController.h"
 #import "DetailViewController.h"
+#import "AddNewViewController.h"
 #import "TodoCell.h"
 #import "Todo.h"
 
-@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource, NewTodoProtocol>
 
 @property NSMutableArray *objects;
 
@@ -23,7 +24,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
+    
+    
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     
@@ -49,23 +51,30 @@
 
 
 - (void)insertNewObject:(id)sender {
-    if (!self.objects) {
-        self.objects = [[NSMutableArray alloc] init];
-    }
-    [self.objects insertObject:[NSDate date] atIndex:0];
+    [self performSegueWithIdentifier:@"newToDo" sender:sender];
+}
+
+-(void)addNew:(Todo *)newTodo
+{
+    [self.objects insertObject:newTodo atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
-
 
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = self.objects[indexPath.row];
+        Todo *todoToBeDetailed = self.objects[indexPath.row];
         DetailViewController *controller = (DetailViewController *)[segue destinationViewController];
-        [controller setDetailItem:object];
+        [controller setDetailItem:todoToBeDetailed];
+    }
+    
+    if ([[segue identifier] isEqualToString:@"newToDo"]) {
+        AddNewViewController *newVC = segue.destinationViewController;
+        
+        newVC.delegate = self;
     }
 }
 

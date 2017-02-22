@@ -16,6 +16,7 @@
 		3F63B6E11E5CD98C00F788FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F63B6DF1E5CD98C00F788FA /* LaunchScreen.storyboard */; };
 		3F63B6EA1E5CE0B700F788FA /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F63B6E91E5CE0B700F788FA /* Todo.m */; };
 		3F63B6ED1E5CE1F500F788FA /* TodoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3F63B6EC1E5CE1F500F788FA /* TodoCell.m */; };
+		3FD1AB6A1E5D2CCC007E2848 /* AddNewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3FD1AB691E5D2CCC007E2848 /* AddNewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +36,9 @@
 		3F63B6E91E5CE0B700F788FA /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		3F63B6EB1E5CE1F500F788FA /* TodoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoCell.h; sourceTree = "<group>"; };
 		3F63B6EC1E5CE1F500F788FA /* TodoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoCell.m; sourceTree = "<group>"; };
+		3FD1AB681E5D2CCC007E2848 /* AddNewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddNewViewController.h; sourceTree = "<group>"; };
+		3FD1AB691E5D2CCC007E2848 /* AddNewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddNewViewController.m; sourceTree = "<group>"; };
+		3FD1AB6B1E5D2D54007E2848 /* NewTodoProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTodoProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,9 @@
 			children = (
 				3F63B6D41E5CD98C00F788FA /* MasterViewController.h */,
 				3F63B6D51E5CD98C00F788FA /* MasterViewController.m */,
+				3FD1AB6B1E5D2D54007E2848 /* NewTodoProtocol.h */,
+				3FD1AB681E5D2CCC007E2848 /* AddNewViewController.h */,
+				3FD1AB691E5D2CCC007E2848 /* AddNewViewController.m */,
 				3F63B6D71E5CD98C00F788FA /* DetailViewController.h */,
 				3F63B6D81E5CD98C00F788FA /* DetailViewController.m */,
 			);
@@ -193,6 +200,7 @@
 				3F63B6D31E5CD98C00F788FA /* AppDelegate.m in Sources */,
 				3F63B6D61E5CD98C00F788FA /* MasterViewController.m in Sources */,
 				3F63B6ED1E5CE1F500F788FA /* TodoCell.m in Sources */,
+				3FD1AB6A1E5D2CCC007E2848 /* AddNewViewController.m in Sources */,
 				3F63B6D01E5CD98C00F788FA /* main.m in Sources */,
 				3F63B6D91E5CD98C00F788FA /* DetailViewController.m in Sources */,
 			);
@@ -349,6 +357,7 @@
 				3F63B6E71E5CD98C00F788FA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
